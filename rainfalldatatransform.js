@@ -24,10 +24,42 @@ const towns = ["Rome", "London", "Paris", "NY", "Vancouver", "Sydney", "Bangkok"
                "Beijing", "Lima", "Montevideo", "Caracas", "Madrid", "Berlin"]  
 
 function mean(town, strng) {
-    
+    const dataArr = toObj(strng);
+    let selected;
+    for (let i = 0; i < dataArr.length; i++) {
+        if (dataArr[i].name === town) {
+            selected = dataArr[i];
+        }
+    }
+    let sum = 0;
+    for (let month in selected.months) {
+        sum += selected.months[month];
+    }
+    const mean = sum / 12;
+    return mean;
 }
-function variance(town, strng) {
-    // Your code
+
+function variance(t, s) {
+    const darr = toObj(t, s);
+    const avg = mean(t, s);
+    let selected;
+    console.log(avg)
+    // for (let j = 0; j < darr.length; j++) {
+    //     if (darr[j] === t) {
+    //         selected = darr[j];
+    //     }
+    // }
+    // let vars = [];
+    // for (let month in selected.months) {
+    //     let diff = avg - selected.months[month];
+    //     let sq = diff * diff;
+    //     vars.push(sq);
+    // }
+    // let sum = vars.reduce((acc, val) => {
+    //     return acc + val
+    // }, 0);
+    // let variance = sum / vars.length;
+    // return variance;
 }
 
 function toObj(d) { 
@@ -44,7 +76,9 @@ function toObj(d) {
         })
         return town
     });
+    console.log('formatted', formatted)
     return formatted
 }
 
-toObj(data);
+mean('Bangkok',data);
+variance('Rome', data)
